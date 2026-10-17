@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "name": "maycry 聚合音乐源配置",
+  "description": "maycry 使用的音乐聚合源清单。所有公共源均经过实测可用；应用启动后会按优先级依次健康检查并自动切换。可在 GitHub 仓库中更新本文件，应用内可热更新拉取。",
+  "updatedAt": "2026-10-17",
+  "github": {
+    "repo": "sjx/maycry",
+    "branch": "main"
+  },
+  "remoteUrls": {
+    "sources": "https://raw.githubusercontent.com/sjx/maycry/main/assets/sources.json"
+  },
+  "platforms": {
+    "netease": "网易云音乐",
+    "tencent": "QQ音乐",
+    "kugou": "酷狗音乐",
+    "kuwo": "酷我音乐",
+    "baidu": "千千音乐",
+    "migu": "咪咕音乐"
+  },
+  "sources": [
+    {
+      "id": "hyc-meting",
+      "name": "Meting API · 163.hyc.moe",
+      "type": "meting",
+      "baseUrl": "https://163.hyc.moe",
+      "servers": ["netease", "tencent", "kugou"],
+      "searchStyle": "keyword",
+      "enabled": true,
+      "priority": 100,
+      "features": ["search", "song", "playlist", "albumlist", "url", "lrc", "pic"],
+      "lrcOptions": { "trans": true, "roma": true },
+      "note": "主力源：速度快，支持歌词翻译与罗马音，30 秒限流窗口"
+    },
+    {
+      "id": "imeto-meting",
+      "name": "Meting API · i-meto",
+      "type": "meting",
+      "baseUrl": "https://api.i-meto.com/meting/api",
+      "servers": ["netease", "tencent", "kugou", "kuwo", "baidu"],
+      "searchStyle": "id",
+      "enabled": true,
+      "priority": 80,
+      "features": ["search", "song", "playlist", "url", "pic"],
+      "note": "稳定老牌实例；歌词接口需 auth，客户端会自动切换到其他源获取歌词"
+    },
+    {
+      "id": "3e0-dream",
+      "name": "DreamMeting · music.3e0.cn",
+      "type": "meting",
+      "baseUrl": "https://music.3e0.cn",
+      "servers": ["netease", "tencent"],
+      "searchStyle": "keyword",
+      "enabled": true,
+      "priority": 60,
+      "features": ["song", "playlist", "url", "lrc", "pic"],
+      "note": "支持 VIP 歌曲解析，灰色歌曲补救专用"
+    },
+    {
+      "id": "solherb-meting",
+      "name": "Meting API · music.solherb.cn",
+      "type": "meting",
+      "baseUrl": "https://music.solherb.cn",
+      "servers": ["netease", "tencent", "kugou"],
+      "searchStyle": "keyword",
+      "enabled": true,
+      "priority": 40,
+      "features": ["search", "song", "playlist", "url", "lrc", "pic"],
+      "note": "备用实例；返回体可能含 PHP 警告，客户端会自动清洗"
+    },
+    {
+      "id": "xvyin-meting",
+      "name": "Meting API · music.xvyin.com",
+      "type": "meting",
+      "baseUrl": "https://music.xvyin.com",
+      "servers": ["netease"],
+      "searchStyle": "keyword",
+      "enabled": true,
+      "priority": 20,
+      "features": ["song", "playlist", "url", "lrc", "pic"],
+      "note": "备用实例"
+    }
+  ],
+  "selfHostTemplates": [
+    {
+      "name": "NeteaseCloudMusicApi",
+      "repo": "https://github.com/Binaryify/NeteaseCloudMusicApi",
+      "type": "netease",
+      "desc": "网易云音乐 Node.js API，功能最全，支持 Docker / Vercel 自建"
+    },
+    {
+      "name": "QQMusicApi",
+      "repo": "https://github.com/jsososo/QQMusicApi",
+      "type": "qq",
+      "desc": "QQ 音乐 Node.js API"
+    },
+    {
+      "name": "KuGouMusicApi",
+      "repo": "https://github.com/MakcRe/KuGouMusicApi",
+      "type": "kugou",
+      "desc": "酷狗音乐 Node.js API"
+    },
+    {
+      "name": "MiguMusicApi",
+      "repo": "https://github.com/jsososo/MiguMusicApi",
+      "type": "migu",
+      "desc": "咪咕音乐 Node.js API"
+    },
+    {
+      "name": "Meting",
+      "repo": "https://github.com/metowolf/Meting",
+      "type": "meting",
+      "desc": "PHP 聚合框架，可自行部署多平台聚合 API，本配置即为其标准协议"
+    }
+  ],
+  "featuredPlaylists": [
+    { "platform": "netease", "id": "3778678", "name": "云音乐热歌榜" },
+    { "platform": "netease", "id": "3779626", "name": "云音乐新歌榜" },
+    { "platform": "netease", "id": "19723756", "name": "云音乐飙升榜" },
+    { "platform": "netease", "id": "2884035", "name": "云音乐原创榜" },
+    { "platform": "tencent", "id": "1149333162", "name": "QQ音乐巅峰榜·流行" }
+  ]
+}
